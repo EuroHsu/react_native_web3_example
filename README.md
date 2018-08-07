@@ -10,7 +10,7 @@
 
     react-native run-android
 
-## How to install web3 in project
+## How to install web3 in react native
 
 ### 1. Open your react native project
 
@@ -92,3 +92,7 @@ async componentWillMount() {
   }
 }
 ```
+
+ref: [How to set up web3.js with CRNA](https://gist.github.com/dougbacelar/29e60920d8fa1982535247563eb63766)
+
+ref: [web3.js - Ethereum JavaScript API](http://web3js.readthedocs.io/en/1.0/index.html)
