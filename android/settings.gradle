@@ -1,0 +1,3 @@
+rootProject.name = 'react_native_web3_example'
+
+include ':app'
