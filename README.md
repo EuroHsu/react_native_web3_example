@@ -1,14 +1,19 @@
 # react_native_web3_example
 
-## How to Use
+## Usage
 
 ### 1. Install dependencies
 
     npm install
 
-### 2. Run in Android
+### 2. Run in Android or iOS
 
     react-native run-android
+    react-native run-ios
+
+### 3. Testing (Jest)
+
+    npm test
 
 ## How to install web3 in react native
 
