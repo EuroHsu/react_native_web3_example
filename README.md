@@ -11,7 +11,11 @@
     react-native run-android
     react-native run-ios
 
-### 3. Testing (Jest)
+## Testing (Jest)
+
+### 1. Setting your privateKey in `__tests__/env.js`
+
+### 2. Try it
 
     npm test
 
