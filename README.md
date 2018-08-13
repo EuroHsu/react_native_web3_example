@@ -31,9 +31,10 @@ let env = {
 
 ### 1. Open your react native project
 
-### 2. Install [node-libs-browser](https://github.com/webpack/node-libs-browser)
+### 2. Install [node-libs-browser](https://github.com/webpack/node-libs-browser) and [react-native-randombytes](https://github.com/mvayngrib/react-native-randombytes)
 
-    npm install node-libs-browser
+    npm install node-libs-browser react-native-randombytes
+    react-native link
 
 ### 3. Create a file called rn-cli.config.js on the root of the project and add the following code into it:
 
