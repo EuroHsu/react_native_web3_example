@@ -13,7 +13,15 @@
 
 ## Testing (Jest)
 
-### 1. Setting your privateKey in `__tests__/env.js`
+### 1. Setting your wallet private key and password in `__tests__/env.js`
+
+```
+let env = {
+  web3Url: 'https://rinkeby.infura.io',
+  privateKey: '<YOUR_WALLET_PRIVATE_KEY>',
+  password: '<YOUR_WALLET_PASSWORD>'
+};
+```
 
 ### 2. Try it
 
@@ -43,6 +51,7 @@ module.exports = {
 // Inject node globals into React Native global scope.
 global.Buffer = require('buffer').Buffer;
 global.process = require('process');
+let randomBytes = require('react-native-randombytes').randomBytes;
 
 if (typeof btoa === 'undefined') {
   global.btoa = function (str) {
@@ -55,6 +64,12 @@ if (typeof atob === 'undefined') {
     return new Buffer(b64Encoded, 'base64').toString('binary');
   };
 }
+
+global.crypto = {
+  randomBytes(size, cb) {
+    return randomBytes(size, cb);
+  }
+};
 ```
 
 ### 5. Import the global.js file into your App.js file
