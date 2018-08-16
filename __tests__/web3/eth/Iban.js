@@ -7,7 +7,6 @@ describe('web3.eth.Iban', () => {
     });
   }
 
-
   test('toAddress', () => web3.eth.Iban.toAddress('XE7338O073KYGTWWZN0F2WZ0R8PX5ZPPZS'));
 
   test('toIban', () => web3.eth.Iban.toIban('0x00c5496aEe77C1bA1f0854206A26DdA82a81D6D8'));

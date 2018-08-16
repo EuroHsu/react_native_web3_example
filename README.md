@@ -13,17 +13,61 @@
 
 ## Testing (Jest)
 
-### 1. Setting your wallet private key and password in `__tests__/env.js`
+### 1. Setting your ethereum network configuration in `__tests__/env.js`
 
-```
+There are 3 informations you need to provide.
+
+1. `web3Url`: Ethereum full node websocket url.
+2. `privateKey`: Your private key in ethereum.
+3. `password`: Password of your private key.
+
+```javascript
 let env = {
-  web3Url: 'https://rinkeby.infura.io',
-  privateKey: '<YOUR_WALLET_PRIVATE_KEY>',
-  password: '<YOUR_WALLET_PASSWORD>'
+  web3Url: 'wss://rinkeby.infura.io/_ws',
+  privateKey: '<YOUR_PRIVATE_KEY>',
+  password: '<YOUR_PASSWORD>'
 };
 ```
 
-### 2. Try it
+### 2. Setting your contract configuration in `__tests__/contract.js`
+
+Deploy [solidity_crowdfunding_example](https://github.com/EuroHsu/solidity_crowdfunding_example) in ethereum network.
+
+There are 3 informations you need to provide.
+
+1. `address`: Contract address in ethereum network.
+
+```javascript
+> truffle deploy --reset --network testnet
+Deploying CrowdFunding...
+  ... 0x829def96c4040daa04bbedbc059a076c64aa0de208cb2062f5b795b501640877
+  CrowdFunding: 0x66fa70bd417b104a5f082e22969ca5c6f7788b66 // contract address here
+Saving successful migration to network...
+```
+
+2. `abi`: Contract application binary interface.
+3. `bytecode`: Contract bytecode.
+
+```javascript
+// solidity_crowdfunding_example/build/contract/CrowdFunding.json
+{
+  ...
+  "abi": [],
+  "bytecode": ""
+  ...
+}
+```
+
+```javascript
+// react_native_web3_example/__tests__/contract.js
+let contract = {
+  address: '',
+  abi: [],
+  bytecode: ''
+};
+```
+
+### 3. Try it
 
     npm test
 
@@ -38,7 +82,7 @@ let env = {
 
 ### 3. Create a file called rn-cli.config.js on the root of the project and add the following code into it:
 
-```
+```javascript
 const extraNodeModules = require('node-libs-browser');
 
 module.exports = {
@@ -48,7 +92,7 @@ module.exports = {
 
 ### 4. Create a file called global.js on the root of the project and add the following code into it:
 
-```
+```javascript
 // Inject node globals into React Native global scope.
 global.Buffer = require('buffer').Buffer;
 global.process = require('process');
@@ -83,14 +127,14 @@ global.crypto = {
 
 ### 7. Initialize web3
 
-```
+```javascript
 import Web3 from 'web3';
-let web3 = new Web3(Web3.givenProvider || 'https://mainnet.infura.io');
+let web3 = new Web3(Web3.givenProvider || 'wss://rinkeby.infura.io/_ws');
 ```
 
 ### 8. Try it
 
-```
+```javascript
 componentWillMount() {
   web3.eth.getBlock('latest').then(console.log).catch(console.error);
 }

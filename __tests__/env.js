@@ -1,5 +1,5 @@
 let env = {
-  web3Url: 'https://rinkeby.infura.io',
+  web3Url: 'wss://rinkeby.infura.io/_ws',
   privateKey: '',
   password: ''
 };

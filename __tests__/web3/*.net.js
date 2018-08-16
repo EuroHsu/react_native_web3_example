@@ -17,7 +17,7 @@ describe('web3.eth.net', () => {
 describe('web3.bzz.net', () => {
   let test = (name, functions) => {
     it(name, async () => {
-      // let result = await functions();
+      let result = await functions();
     });
   }
 
