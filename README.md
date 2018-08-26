@@ -31,7 +31,7 @@ let env = {
 
 ### 2. Setting your contract configuration in `__tests__/contract.js`
 
-Deploy [solidity_crowdfunding_example](https://github.com/EuroHsu/solidity_crowdfunding_example) in ethereum network.
+Deploy [solidity_simplestore](https://github.com/EuroHsu/solidity_simplestore) in ethereum network.
 
 There are 3 informations you need to provide.
 
@@ -39,9 +39,10 @@ There are 3 informations you need to provide.
 
 ```javascript
 > truffle deploy --reset --network testnet
-Deploying CrowdFunding...
-  ... 0x829def96c4040daa04bbedbc059a076c64aa0de208cb2062f5b795b501640877
-  CrowdFunding: 0x66fa70bd417b104a5f082e22969ca5c6f7788b66 // contract address here
+Running migration: 2_simple_store.js
+  Deploying SimpleStore...
+  ... 0x45054dcb0d0847391870a7dbf007fd8cc5bb1b852d92b50a5cbce3629023da33
+  SimpleStore: 0xddaa77aecb79d70e396e50f3d28c7a5dae3da5e7 // contract address here
 Saving successful migration to network...
 ```
 
@@ -49,7 +50,7 @@ Saving successful migration to network...
 3. `bytecode`: Contract bytecode.
 
 ```javascript
-// solidity_crowdfunding_example/build/contract/CrowdFunding.json
+// solidity_simplestore/build/contract/SimpleStore.json
 {
   ...
   "abi": [],

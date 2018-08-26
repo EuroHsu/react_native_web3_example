@@ -60,6 +60,7 @@ describe('web3.eth', () => {
 
   test('sendSignedTransaction', async () => {
     let nonce = await web3.eth.getTransactionCount(account, 'pending');
+    nonce = web3.utils.toHex(nonce);
     var rawTx = {
       nonce: nonce,
       gas: 21000,
@@ -76,7 +77,8 @@ describe('web3.eth', () => {
   test('sign', () => web3.eth.sign('Hello world', account));
 
   test('signTransaction', async () => {
-    let nonce = await web3.eth.getTransactionCount(account);
+    let nonce = await web3.eth.getTransactionCount(account, 'pending');
+    nonce = web3.utils.toHex(nonce);
     return web3.eth.signTransaction({
       nonce: nonce,
       from: account,

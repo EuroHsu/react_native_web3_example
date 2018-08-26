@@ -1,4 +1,5 @@
 import web3 from 'test/web3';
+import contract from 'test/contract';
 
 describe('web3.eth.subscribe', () => {
   let test = (name, functions) => {
@@ -13,10 +14,9 @@ describe('web3.eth.subscribe', () => {
         if (err) {
           return reject(err);
         }
-        resolve(result);
-      });
-  
-      subscription.unsubscribe((err, success) => {
+        subscription.unsubscribe((err, success) => {
+          resolve(result);
+        });
       });
     });
   });
@@ -27,10 +27,9 @@ describe('web3.eth.subscribe', () => {
         if (err) {
           return reject(err);
         }
-        resolve(result);
-      });
-  
-      subscription.unsubscribe((err, success) => {
+        subscription.unsubscribe((err, success) => {
+          resolve(result);
+        });
       });
     });
   });
@@ -41,10 +40,9 @@ describe('web3.eth.subscribe', () => {
         if (err) {
           return reject(err);
         }
-        resolve(result);
-      });
-  
-      subscription.unsubscribe((err, success) => {
+        subscription.unsubscribe((err, success) => {
+          resolve(result);
+        });
       });
     });
   });
@@ -52,16 +50,15 @@ describe('web3.eth.subscribe', () => {
   test('subscribe("logs")', () => {
     return new Promise((resolve, reject) => {
       var subscription = web3.eth.subscribe('logs', {
-        address: '0x11f4d0A3c12e86B4b5F39B213F7E19D048276DAe',
+        address: contract.address,
         topics: []
       }, (err, result) => {
         if (err) {
           return reject(err);
         }
-        resolve(result);
-      });
-  
-      subscription.unsubscribe((err, success) => {
+        subscription.unsubscribe((err, success) => {
+          resolve(result);
+        });
       });
     });
   });

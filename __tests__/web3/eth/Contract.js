@@ -56,27 +56,31 @@ describe('web3.eth.Contract', () => {
 
   test('methods', () => myContract.methods);
 
-  test('methods.amountRaised.call', () => myContract.methods.amountRaised().call());
-
   test('methods.owner.call', () => myContract.methods.owner().call());
 
-  test('methods.withdraw.send', () => myContract.methods.withdraw().send({from: account}));
+  test('methods.set(666).send', () => myContract.methods.set(666).send({from: account}));
 
-  test('methods.withdraw.estimateGas', () => myContract.methods.withdraw().estimateGas());
+  test('methods.get().call', () => myContract.methods.get().call());
 
-  test('methods.withdraw.encodeABI', () => myContract.methods.withdraw().encodeABI());
+  test('methods.set(666).estimateGas', () => myContract.methods.set(666).estimateGas());
 
-  test('events.once', () => myContract.once('Feedback', () => {}));
+  test('methods.set(666).encodeABI', () => myContract.methods.set(666).encodeABI());
 
-  test('events.Feedback', () => myContract.events.Feedback());
+  test('events.once(NewValueSet)', () => myContract.once('NewValueSet', () => {}));
+
+  test('events.NewValueSet', () => myContract.events.NewValueSet());
 
   test('events.allEvents', () => myContract.events.allEvents());
 
-  test('events.getPastEvents', () => myContract.getPastEvents('Feedback'));
+  test('events.getPastEvents(NewValueSet)', () => myContract.getPastEvents('NewValueSet', {
+    fromBlock: 0,
+    toBlock: 'latest'
+  }));
 
   test('sendSignedMethodTransaction', async () => {
     let nonce = await web3.eth.getTransactionCount(account, 'pending');
-    let txMethodData = await myContract.methods.withdraw().encodeABI();
+    nonce = web3.utils.toHex(nonce);
+    let txMethodData = await myContract.methods.set(nonce).encodeABI();
     var rawTx = {
       nonce: nonce,
       gas: 4700000,
@@ -91,15 +95,22 @@ describe('web3.eth.Contract', () => {
     return web3.eth.sendSignedTransaction('0x' + tx.serialize().toString('hex'))
   });
 
-  myContract.once('Feedback', (err, event) => {
-    showLog('events.once', err, event);
+  myContract.once('NewValueSet', (err, event) => {
+    showLog('events.once(NewValueSet, callback)', err, event);
   });
 
-  myContract.events.Feedback((err, event) => {
-    showLog('events.Feedback', err, event);
+  myContract.events.NewValueSet((err, event) => {
+    showLog('events.NewValueSet(callback)', err, event);
   });
 
   myContract.events.allEvents((err, event) => {
-    showLog('events.allEvents', err, event);
+    showLog('events.allEvents(callback)', err, event);
+  });
+
+  myContract.getPastEvents('NewValueSet', {
+    fromBlock: 0,
+    toBlock: 'latest'
+  }, (err, event) => {
+    showLog('events.getPastEvents(NewValueSet, callback)', err, event);
   });
 });
